@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      - 'POSTGRES_DB=corporate_library_db'
+      - 'POSTGRES_PASSWORD=123456'
+      - 'POSTGRES_USER=SKDEV9'
+    ports:
+      - "5433:5432"

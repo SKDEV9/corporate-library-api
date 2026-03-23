@@ -1,0 +1,1 @@
+UPDATE users SET role = 'ROLE_ADMIN' WHERE email = 'teste@email.com';
