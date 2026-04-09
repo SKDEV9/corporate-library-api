@@ -27,11 +27,6 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         String uri = request.getRequestURI();
 
-        if (uri.equals("/login") || uri.equals("/users") ) {
-            filterChain.doFilter(request, response);
-            return;
-        }
-
         var tokenJWT = recuperarToken(request);
 
         if (tokenJWT != null) {
