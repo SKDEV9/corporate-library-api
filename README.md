@@ -6,6 +6,9 @@
 ![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 
+🌐 **Status:** Deploy realizado com sucesso! A API está online e pronta para requisições em:
+`https://corporate-library-api-production.up.railway.app`
+
 ## 💻 Sobre o Projeto
 A **Corporate Library API** é um sistema de gerenciamento de biblioteca corporativa desenvolvido em Java com Spring Boot. O objetivo desta API RESTful é gerenciar o acervo de livros da empresa e controlar os empréstimos realizados pelos colaboradores, garantindo a aplicação de regras de negócio estritas e segurança no acesso aos dados.
 
@@ -24,17 +27,33 @@ Durante o desenvolvimento, o foco principal foi garantir a integridade do sistem
 ## 🛠️ Tecnologias e Ferramentas
 * **Java 17+**
 * **Spring Boot 3** (Web, Data JPA, Security, Validation)
-* **Banco de Dados:** PostgreSQL
+* **Banco de Dados:** PostgreSQL (Local e Nuvem/Neon)
 * **Migrações de Banco de Dados:** Flyway
 * **Autenticação:** JSON Web Token (JWT)
+* **Deploy:** Railway
 * **Testes e Documentação:** Postman
 
 ## 🧠 Desafios Superados
 Um dos maiores desafios técnicos do projeto foi conciliar as validações de regras de negócio com o **Spring Security**. Inicialmente, os filtros de segurança estavam a interceptar exceções de negócio (como "Limite de livros atingido") e a devolver um `403 Forbidden` genérico ao cliente.
 A solução implementada consistiu em ajustar o `SecurityFilterChain` para liberar a rota interna `/error` do Spring, garantindo que o `RestControllerAdvice` pudesse formatar e entregar a mensagem de erro correta ao cliente, mantendo a API 100% segura.
 
-## 🚀 Como Executar o Projeto
+## 🚀 Como Testar e Executar o Projeto
+
+### Opção 1: Testar a API na Nuvem (Recomendado)
+A API está online e conectada a um banco de dados de produção. Você pode testar os endpoints diretamente através do Postman:
+1. Faça o download do arquivo `postman_collection.json` (adicione este arquivo no repositório!) e importe no seu Postman.
+2. Utilize a URL base: `https://corporate-library-api-production.up.railway.app`
+3. Crie um usuário, faça o login na rota `/login` para pegar o seu Token JWT, e teste as rotas protegidas!
+
+### Opção 2: Executar Localmente
+Para rodar a aplicação na sua própria máquina, siga os passos abaixo:
 
 1. Clone este repositório:
    ```bash
    git clone [https://github.com/SKDEV9/corporate-library-api.git](https://github.com/SKDEV9/corporate-library-api.git)
+
+2. Configure o seu banco de dados PostgreSQL local.
+
+3. (Opcional) Configure as variáveis de ambiente necessárias no application.properties (URL do banco, user, password e JWT Secret).
+
+4. Rode a aplicação via sua IDE de preferência ou utilizando o Maven. A API estará disponível em http://localhost:8080.
